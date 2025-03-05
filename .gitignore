@@ -1,2 +1,5 @@
-node_modules
+# Çevresel değişkenler
 .env
+
+# Node.js bağımlılıkları
+node_modules/

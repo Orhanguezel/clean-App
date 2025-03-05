@@ -1,0 +1,205 @@
+{
+    "info": {
+        "name": "CleanApp API Collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "User Registration",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\": \"Ahmet Y\\u0131lmaz\", \"email\": \"ahmet@example.com\", \"password\": \"Test123!\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/api/users/register",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "users",
+                        "register"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "User Login",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"email\": \"ahmet@example.com\", \"password\": \"Test123!\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/api/users/login",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "users",
+                        "login"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get User Profile",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:5000/api/users/profile",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "users",
+                        "profile"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Create Apartment",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"name\": \"Y\\u0131ld\\u0131z Apartman\\u0131\", \"address\": \"\\u0130stanbul, Be\\u015fikta\\u015f\", \"blockCount\": 2, \"floorCount\": 10, \"cleaningPeriod\": \"weekly\"}"
+                },
+                "url": {
+                    "raw": "http://localhost:5000/api/apartments",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "apartments"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get All Apartments",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:5000/api/apartments",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "apartments"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get Tasks",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:5000/api/tasks",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get Finance Report",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:5000/api/reports/finance/monthly?year=2024&month=03",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "reports",
+                        "finance",
+                        "monthly"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get Payment Status",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:5000/api/payments",
+                    "host": [
+                        "localhost"
+                    ],
+                    "path": [
+                        "api",
+                        "payments"
+                    ]
+                }
+            }
+        }
+    ]
+}

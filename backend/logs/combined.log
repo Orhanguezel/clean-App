@@ -62,3 +62,5 @@
 2025-03-05T21:54:36.094Z [INFO]: GET /api/reports/finance/monthly 400 50 - 2.224 ms
 2025-03-05T21:55:11.678Z [INFO]: GET /api/payments 401 78 - 0.471 ms
 2025-03-05T21:55:31.848Z [INFO]: GET /api/payments 200 2 - 5.663 ms
+2025-03-05T22:04:41.393Z [INFO]: 📚 Swagger belgeleri hazır: http://localhost:5000/api-docs
+2025-03-05T22:04:41.395Z [INFO]: 🚀 Server 5000 portunda çalışıyor...
