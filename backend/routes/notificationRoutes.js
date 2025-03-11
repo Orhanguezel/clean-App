@@ -8,8 +8,8 @@ import { protect } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", protect, createNotification); // Yeni bildirim oluşturma
-router.get("/", protect, getUserNotifications); // Kullanıcının bildirimlerini getirme
-router.put("/:id", protect, markNotificationAsRead); // Bildirimi okundu olarak işaretleme
+router.route("/").post(protect, createNotification).get(protect, getUserNotifications);
+router.route("/:id").put(protect, markNotificationAsRead);
+
 
 export default router;

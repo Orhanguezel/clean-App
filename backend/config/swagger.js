@@ -1,23 +1,21 @@
-import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import fs from "fs";
+import yaml from "js-yaml";
+import dotenv from "dotenv";
+import path from "path";
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Clean-App API Dokümantasyonu",
-      version: "1.0.0",
-      description: "Apartman ve temizlik yönetim API'si",
-    },
-    servers: [{ url: "http://localhost:5000/api" }],
-  },
-  apis: ["./routes/*.js"],
-};
+dotenv.config();
 
-const swaggerSpec = swaggerJsDoc(options);
+const BASE_URL = process.env.BASE_URL || "http://localhost:5000/api";
+
+// 📌 YAML dosyasını doğru konumdan yükle
+const swaggerPath = path.join(process.cwd(), "config", "swagger.yaml");
+
+const swaggerDocument = yaml.load(fs.readFileSync(swaggerPath, "utf8"));
 
 const setupSwagger = (app) => {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  console.log(`📚 Swagger belgeleri hazır: ${BASE_URL}/api-docs`);
 };
 
 export default setupSwagger;

@@ -11,10 +11,11 @@ import { protect } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
 // Gelir-Gider işlemleri
-router.post("/", protect, createFinanceRecord); // Yeni finans kaydı ekleme
-router.get("/", protect, getAllFinanceRecords); // Tüm finans kayıtlarını getirme
-router.get("/:id", protect, getFinanceRecordById); // Tek bir finans kaydını getirme
-router.put("/:id", protect, updateFinanceRecord); // Finans kaydını güncelleme
-router.delete("/:id", protect, deleteFinanceRecord); // Finans kaydını silme
+router.route("/").post(protect, createFinanceRecord).get(protect, getAllFinanceRecords);
+router
+  .route("/:id")
+  .get(protect, getFinanceRecordById)
+  .put(protect, updateFinanceRecord)
+  .delete(protect, deleteFinanceRecord);
 
 export default router;

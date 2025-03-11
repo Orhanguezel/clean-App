@@ -11,10 +11,11 @@ import { protect } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
 // Apartman işlemleri
-router.post("/", protect, createApartment); // Apartman ekleme (sadece giriş yapmış kullanıcılar)
-router.get("/", protect, getAllApartments); // Tüm apartmanları getirme
-router.get("/:id", protect, getApartmentById); // Tek apartmanı getirme
-router.put("/:id", protect, updateApartment); // Apartmanı güncelleme
-router.delete("/:id", protect, deleteApartment); // Apartmanı silme
+router.route("/").post(protect, createApartment).get(protect, getAllApartments);
+router
+  .route("/:id")
+  .get(protect, getApartmentById)
+  .put(protect, updateApartment)
+  .delete(protect, deleteApartment);
 
 export default router;

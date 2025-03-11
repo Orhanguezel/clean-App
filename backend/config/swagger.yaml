@@ -1,0 +1,185 @@
+openapi: 3.0.0
+info:
+  title: Clean-App API Dokümantasyonu
+  description: Apartman ve temizlik yönetim API'si
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000/api
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
+
+paths:
+  /users/register:
+    post:
+      summary: Kullanıcı kaydı oluştur
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Ahmet Yılmaz
+                email:
+                  type: string
+                  example: ahmet@example.com
+                password:
+                  type: string
+                  example: Test123!
+                role:
+                  type: string
+                  example: user
+      responses:
+        "201":
+          description: Kullanıcı başarıyla oluşturuldu
+        "400":
+          description: E-posta zaten kullanılıyor
+
+  /users/login:
+    post:
+      summary: Kullanıcı girişi yap
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: ahmet@example.com
+                password:
+                  type: string
+                  example: Test123!
+      responses:
+        "200":
+          description: Giriş başarılı, token döndürülür
+        "401":
+          description: Geçersiz e-posta veya şifre
+
+  /users/profile:
+    get:
+      summary: Kullanıcı profilini getir
+      tags:
+        - User
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Kullanıcı profili başarıyla getirildi
+        "401":
+          description: Yetkilendirme başarısız
+
+  /apartments:
+    post:
+      summary: Yeni apartman ekle
+      tags:
+        - Apartment
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Yıldız Apartmanı
+                address:
+                  type: string
+                  example: İstanbul, Beşiktaş
+                blockCount:
+                  type: integer
+                  example: 2
+                floorCount:
+                  type: integer
+                  example: 10
+                cleaningPeriod:
+                  type: string
+                  example: weekly
+      responses:
+        "201":
+          description: Apartman başarıyla eklendi
+        "401":
+          description: Yetkilendirme başarısız
+
+    get:
+      summary: Tüm apartmanları getir
+      tags:
+        - Apartment
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Apartmanlar başarıyla getirildi
+        "401":
+          description: Yetkilendirme başarısız
+
+  /tasks:
+    get:
+      summary: Tüm görevleri getir
+      tags:
+        - Task
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Görevler başarıyla getirildi
+        "401":
+          description: Yetkilendirme başarısız
+
+  /reports/finance/monthly:
+    get:
+      summary: Aylık finans raporunu getir
+      tags:
+        - Report
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: year
+          in: query
+          required: true
+          schema:
+            type: integer
+            example: 2024
+        - name: month
+          in: query
+          required: true
+          schema:
+            type: integer
+            example: 3
+      responses:
+        "200":
+          description: Finans raporu başarıyla getirildi
+        "401":
+          description: Yetkilendirme başarısız
+
+  /payments:
+    get:
+      summary: Kullanıcının ödeme durumlarını getir
+      tags:
+        - Payment
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Ödeme bilgileri başarıyla getirildi
+        "401":
+          description: Yetkilendirme başarısız
